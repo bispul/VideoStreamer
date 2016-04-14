@@ -60,12 +60,11 @@ public class VideoStreaming extends Activity {
 
                     while(true) {
                         //listen for incoming clients
-                        Socket client = new Socket(SERVERIP, SERVERPORT);
-                        /*do {
+                        Socket client = null;
+                        do {
                             client = serverSocket.accept();
                             Log.e(tag,"DO BHITRA");
                         } while(client==null);
-*/
                         handler.post(new Runnable(){
                             @Override
                             public void run(){
