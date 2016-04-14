@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Video Streamer</string>
+    <string name="msg_access_local">Open with browser : </string>
+    <string name="msg_wifi_error">Error: Please enable wifi</string>
+    <string name="msg_port_error">Error: 8080 port is in used </string>
+    <string name="settings">Settings</string>
+</resources>
