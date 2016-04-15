@@ -1,6 +1,7 @@
 package com.bispul.videostreamer;
 
 import android.app.Activity;
+import android.hardware.Camera;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,9 @@ public class VideoStreaming extends Activity {
     SurfaceHolder mHolder;
     // Video variable
     MediaRecorder recorder;
+    MediaRecorder mMediaRecorder;
+    Camera mCamera;
+
     // Networking variables
     static final String tag = "SERVER _ VIDEO";
     public static String SERVERIP="192.168.100.100";
@@ -71,6 +75,7 @@ public class VideoStreaming extends Activity {
                                 connectionStatus.setText("Connected.");
                             }
                         });
+                        /*
                         try{
                             // Begin video communication
                             final ParcelFileDescriptor pfd = ParcelFileDescriptor.fromSocket(client);
@@ -97,6 +102,28 @@ public class VideoStreaming extends Activity {
                                     recorder.start();
                                 }
                             });
+*/
+                            ParcelFileDescriptor pfd = ParcelFileDescriptor.fromSocket(client);
+                            mCamera = Camera.open();
+                            mMediaRecorder = new MediaRecorder();
+                            mCamera.unlock();
+                            mMediaRecorder.setCamera(mCamera);
+                            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
+                            mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+// this is the unofficially supported MPEG2TS format, suitable for streaming (Android 3.0+)
+                            mMediaRecorder.setOutputFormat(8);
+                            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+                            mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.DEFAULT);
+                            mMediaRecorder.setOutputFile(pfd.getFileDescriptor());
+                            mMediaRecorder.setPreviewDisplay(mHolder.getSurface());
+                        try {
+                            mMediaRecorder.prepare();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        mMediaRecorder.start();
+/*
+
                         } catch (Exception e) {
                             Log.e(tag,"Exception : "+e.toString());
                             handler.post(new Runnable(){
@@ -107,6 +134,7 @@ public class VideoStreaming extends Activity {
                             });
                             e.printStackTrace();
                         }
+*/
                     }
                 } else {
                     handler.post(new Runnable() {
