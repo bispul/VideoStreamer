@@ -22,20 +22,20 @@
             android:name="StreamCameraActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".VideoStreaming"
             android:label="@string/app_name"
             android:screenOrientation="landscape">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <activity android:name="PeepersPreferenceActivity" />
