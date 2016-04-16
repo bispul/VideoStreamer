@@ -17,9 +17,7 @@ package com.bispul.videostreamer;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.Collections;
 import java.util.Enumeration;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,7 +29,6 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.preference.PreferenceManager;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -86,7 +83,7 @@ public final class StreamCameraActivity extends Activity
     protected void onCreate(final Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activitymain);
 
         new LoadPreferencesTask().execute();
 
